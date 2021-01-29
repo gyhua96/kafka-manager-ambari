@@ -1,0 +1,18 @@
+<assembly>
+    <id>release</id>
+    <formats>
+        <format>dir</format>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>src/main</directory>
+            <includes>
+                <include>KAFKA_MANAGER/**</include>
+            </includes>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+    </fileSets>
+
+</assembly>

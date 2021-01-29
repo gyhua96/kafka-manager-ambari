@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+
+application.conf
+
+# Copyright 2015 Yahoo Inc. Licensed under the Apache License, Version 2.0
+# See accompanying LICENSE file.
+
+# This is the main configuration file for the application.
+# ~~~~~
+
+# Secret key
+# ~~~~~
+# The secret key is used to secure cryptographics functions.
+# If you deploy your application to several instances be sure to use the same key!
+play.crypto.secret="^<csmm5Fx4d=r2HEX8pelM3iBkFVv?k[mc;IZE<_Qoq8EkX_/7@Zt6dP05Pzea3U"
+play.crypto.secret=${?APPLICATION_SECRET}
+play.http.session.maxAge="1h"
+
+-->
+<configuration>
+    <property>
+        <name>kafka-manager.zkhosts</name>
+        <display-name>zookeeper hosts for kafka manager</display-name>
+        <value>"localhost:2181"</value>
+        <description>
+            Set zookeeper hosts for kafka manager.
+            Data of kafka manager will store at this zookeeper cluster.
+        </description>
+        <on-ambari-upgrade add="false"/>
+    </property>
+    <property>
+        <name>play.crypto.secret</name>
+        <value>"^csmm5Fx4d=r2HEX8pelM3iBkFVv?k[mc;IZE_Qoq8EkX_/7@Zt6dP05Pzea3U"</value>
+        <description>
+            The secret key is used to secure cryptographics functions.
+            If you deploy your application to several instances be sure to use the same key!
+        </description>
+        <on-ambari-upgrade add="false"/>
+    </property>
+
+    <property>
+        <name>play.i18n.langs</name>
+        <value>["en"]</value>
+        <description>
+            The application languages
+        </description>
+        <on-ambari-upgrade add="false"/>
+    </property>
+    <property>
+        <name>play.http.requestHandler</name>
+        <value>play.http.DefaultHttpRequestHandler</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+    <property>
+        <name>play.http.context</name>
+        <value>/</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+    <property>
+        <name>play.application.loader</name>
+        <value>loader.KafkaManagerLoader</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+
+    <property>
+        <name>pinned-dispatcher.type</name>
+        <value>PinnedDispatcher</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+    <property>
+        <name>pinned-dispatcher.executor</name>
+        <value>thread-pool-executor</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+    <property>
+        <name>application.features</name>
+        <value>["KMClusterManagerFeature","KMTopicManagerFeature","KMPreferredReplicaElectionFeature","KMReassignPartitionsFeature"]</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+
+    <property>
+        <name>akka.logger-startup-timeout</name>
+        <value>60s</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+
+    <property>
+        <name>basicAuthentication.enabled</name>
+        <value>false</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+    <property>
+        <name>basicAuthentication.username</name>
+        <value>admin</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+    <property>
+        <name>basicAuthentication.password</name>
+        <value>password</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+    <property>
+        <name>basicAuthentication.realm</name>
+        <value>Kafka-Manager</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+    <property>
+        <name>basicAuthentication.excluded</name>
+        <value>["/api/health"]</value>
+        <description>
+            ping the health of your instance without authentification
+        </description>
+        <on-ambari-upgrade add="false"/>
+    </property>
+
+    <property>
+        <name>kafka-manager.consumer.properties.file</name>
+        <value>${?CONSUMER_PROPERTIES_FILE}</value>
+        <on-ambari-upgrade add="false"/>
+    </property>
+</configuration>
