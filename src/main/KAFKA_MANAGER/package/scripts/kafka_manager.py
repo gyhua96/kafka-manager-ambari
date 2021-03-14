@@ -98,6 +98,8 @@ class KafkaManager(Script):
 
     self.configure(env)
 
+    ensure_base_directories()
+
     cmd = 'nohup ' + params.cmak_bin + ' -Dhttp.port='+ params.port +' -Dplay.server.pidfile.path=' + params.cmak_pid_file + ' -Dapplication.home=/var/log/cmak & '
     Execute('echo "Running ' + cmd + '"')
     Execute('echo "start cmak."')
